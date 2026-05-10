@@ -51,6 +51,7 @@ export default function ProductDetailPage({ params }: Props) {
   const { addItem, openCart } = useCartStore()
 
   async function handleAddToCart() {
+    if (!lot) return
     setAdding(true)
     addItem({
       lotId: lot.id,
