@@ -1,5 +1,3 @@
-export const runtime = 'edge'
-
 import React, { Suspense } from 'react'
 import type { Metadata } from 'next'
 import { ShopContent } from '@/components/shop/ShopContent'

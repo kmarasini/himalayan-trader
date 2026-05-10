@@ -1,5 +1,3 @@
-export const runtime = 'edge'
-
 import { getLotBySlug, coffeeLots } from '@/lib/products'
 import { notFound } from 'next/navigation'
 import { ProductDetailClient } from '@/components/product/ProductDetailClient'
