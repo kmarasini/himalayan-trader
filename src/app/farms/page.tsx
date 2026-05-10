@@ -1,3 +1,5 @@
+export const runtime = 'edge'
+
 import React from 'react'
 import { farms } from '@/lib/farms'
 import { FarmCard } from '@/components/farm/FarmCard'

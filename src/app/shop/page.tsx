@@ -1,3 +1,5 @@
+export const runtime = 'edge'
+
 import React from 'react'
 import { ProductCard } from '@/components/product/ProductCard'
 import { coffeeLots } from '@/lib/products'
