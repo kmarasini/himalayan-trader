@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { MapPin, ArrowLeft, Trees, CheckCircle, Calendar } from 'lucide-react'
-import { getFarmBySlug } from '@/lib/farms'
+import { farms, getFarmBySlug } from '@/lib/farms'
 import { coffeeLots } from '@/lib/products'
 import { ProductCard } from '@/components/product/ProductCard'
 import { Badge } from '@/components/ui/badge'
@@ -14,6 +14,10 @@ import type { Metadata } from 'next'
 
 interface Props {
   params: Promise<{ slug: string }>
+}
+
+export async function generateStaticParams() {
+  return farms.map((farm) => ({ slug: farm.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
