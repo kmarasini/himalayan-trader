@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 import { coffeeLots } from '@/lib/products'
 import { farms } from '@/lib/farms'
 
-const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://himalayantrader.com'
+const BASE = process.env.NEXT_PUBLIC_SITE_URL || 'https://himalayantrader.com'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const static_pages = ['/', '/shop', '/farms', '/wholesale', '/about'].map(

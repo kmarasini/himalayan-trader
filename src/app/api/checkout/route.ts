@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
 
     const stripe = getStripe()
     const siteUrl =
-      process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'
+      process.env.NEXT_PUBLIC_SITE_URL || 'https://himalayantrader.com'
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
