@@ -14,9 +14,7 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    serverComponentsExternalPackages: ['stripe'],
-  },
+  serverExternalPackages: ['stripe'],
 }
 
 if (process.env.NODE_ENV === 'development') {

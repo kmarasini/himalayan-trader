@@ -35,11 +35,12 @@ import type { CartItemSize } from '@/types'
 const sizeOptions: CartItemSize[] = ['250g', '500g', '1kg']
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export default function ProductDetailPage({ params }: Props) {
-  const lot = getLotBySlug(params.slug)
+  const { slug } = React.use(params)
+  const lot = getLotBySlug(slug)
   if (!lot) notFound()
 
   const [selectedImage, setSelectedImage] = useState(0)

@@ -37,7 +37,7 @@ const whyNepalPoints = [
     icon: Mountain,
     title: 'Extreme Altitude',
     description:
-      'Nepal's Himalayan gradients push coffee above 2,000m — cold nights force slow cherry development and extraordinary sugar concentration.',
+      "Nepal's Himalayan gradients push coffee above 2,000m — cold nights force slow cherry development and extraordinary sugar concentration.",
   },
   {
     icon: Leaf,

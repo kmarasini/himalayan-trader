@@ -11,11 +11,12 @@ import { Button } from '@/components/ui/button'
 import type { Metadata } from 'next'
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const farm = getFarmBySlug(params.slug)
+  const { slug } = await params
+  const farm = getFarmBySlug(slug)
   if (!farm) return { title: 'Farm not found' }
   return {
     title: `${farm.name} — ${farm.region}, Nepal`,
@@ -23,8 +24,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default function FarmDetailPage({ params }: Props) {
-  const farm = getFarmBySlug(params.slug)
+export default async function FarmDetailPage({ params }: Props) {
+  const { slug } = await params
+  const farm = getFarmBySlug(slug)
   if (!farm) notFound()
 
   const farmLots = coffeeLots.filter(

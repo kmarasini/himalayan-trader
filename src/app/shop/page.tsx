@@ -18,11 +18,11 @@ const processingFilters = [
 ]
 
 interface ShopPageProps {
-  searchParams: { process?: string; region?: string; featured?: string }
+  searchParams: Promise<{ process?: string; region?: string; featured?: string }>
 }
 
-export default function ShopPage({ searchParams }: ShopPageProps) {
-  const { process, region, featured } = searchParams
+export default async function ShopPage({ searchParams }: ShopPageProps) {
+  const { process, region, featured } = await searchParams
 
   let lots = coffeeLots.filter((l) => l.available)
 

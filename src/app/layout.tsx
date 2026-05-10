@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: 'HimalayanTrader',
     title: 'HimalayanTrader — Specialty Green Coffee from Nepal',
     description:
-      'Direct-trade unroasted green coffee from Nepal's finest small-lot farmers. Full lot traceability.',
+      "Direct-trade unroasted green coffee from Nepal's finest small-lot farmers. Full lot traceability.",
     images: [
       {
         url: '/og-image.jpg',
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'HimalayanTrader — Specialty Green Coffee from Nepal',
-    description: 'Direct-trade green coffee from Nepal's finest small-lot farms.',
+    description: "Direct-trade green coffee from Nepal's finest small-lot farms.",
   },
   robots: {
     index: true,
