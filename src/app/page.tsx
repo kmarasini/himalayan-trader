@@ -10,15 +10,12 @@ import {
   Award,
   Users,
   Globe,
-  CheckCircle,
   TrendingUp,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { ProductCard } from '@/components/product/ProductCard'
-import { FarmCard } from '@/components/farm/FarmCard'
 import { getFeaturedLots } from '@/lib/products'
-import { farms } from '@/lib/farms'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -90,7 +87,6 @@ const processSteps = [
 
 export default function HomePage() {
   const featuredLots = getFeaturedLots()
-  const featuredFarms = farms.slice(0, 3)
 
   return (
     <>
@@ -276,88 +272,6 @@ export default function HomePage() {
                 </h3>
                 <p className="text-sm text-cream-300 leading-relaxed">{description}</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Farmer spotlight ──────────────────────────────────── */}
-      <section className="py-20 bg-cream-50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="relative aspect-square rounded-2xl overflow-hidden shadow-xl max-w-md">
-              <Image
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80"
-                alt="Pemba Dorje Sherpa, farmer"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-himalaya-600 uppercase tracking-widest mb-3">
-                Farmer Spotlight
-              </p>
-              <h2 className="font-serif text-4xl font-bold text-charcoal-900 mb-2">
-                Pemba Dorje Sherpa
-              </h2>
-              <p className="text-charcoal-500 mb-6">
-                Sherpa Highlands Estate, Solukhumbu — 1,920m
-              </p>
-              <blockquote className="border-l-4 border-himalaya-500 pl-6 mb-6">
-                <p className="font-serif text-xl italic text-charcoal-700 leading-relaxed">
-                  "My grandfather planted the first trees on these terraces in
-                  1961. When a roaster buys our lot, they're not buying
-                  commodity coffee — they're buying sixty years of learning."
-                </p>
-              </blockquote>
-              <div className="flex flex-col gap-2 mb-8">
-                {[
-                  'Third generation coffee farmer',
-                  'Licensed Q-Grader (Arabica)',
-                  'Organic certified since 2009',
-                  '240 kg lot available · 2024 harvest',
-                ].map((point) => (
-                  <div key={point} className="flex items-center gap-2 text-sm text-charcoal-600">
-                    <CheckCircle className="h-4 w-4 text-forest-600 flex-shrink-0" />
-                    {point}
-                  </div>
-                ))}
-              </div>
-              <Button asChild>
-                <Link href="/farms/sherpa-highlands-estate">
-                  Read full farm story
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Farm directory preview ────────────────────────────── */}
-      <section className="py-20 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <p className="text-sm font-semibold text-himalaya-600 uppercase tracking-widest mb-2">
-                Origin Transparency
-              </p>
-              <h2 className="font-serif text-4xl font-bold text-charcoal-900">
-                Meet the Farms
-              </h2>
-            </div>
-            <Button variant="outline" asChild className="hidden sm:flex">
-              <Link href="/farms">
-                All farms
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredFarms.map((farm) => (
-              <FarmCard key={farm.id} farm={farm} />
             ))}
           </div>
         </div>
