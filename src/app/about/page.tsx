@@ -58,12 +58,17 @@ export default function AboutPage() {
             Our Story
           </p>
           <h1 className="font-serif text-5xl font-bold mb-6">
-            Built for farmers first
+            Bridging the peaks of{' '}
+            <span className="text-himalaya-400">Nepal</span>{' '}
+            to the roasters of the West.
           </h1>
           <p className="text-cream-200 text-xl leading-relaxed">
-            HimalayanTrader exists because the world's most extraordinary
-            coffee is grown in Nepal — and almost nobody knows it yet. We're
-            here to change that, one traceability card at a time.
+            HimalayanTrader was founded on a single realization: the world's
+            most extraordinary coffee is grown at altitudes that touch the
+            sky—and it's Nepal's best-kept secret. We aren't just importers;
+            we are the bridge between the high-altitude smallholder farmers of
+            the Himalayas and the discerning palates of those who seek the
+            exceptional.
           </p>
         </div>
       </div>
