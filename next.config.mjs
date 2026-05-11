@@ -2,6 +2,14 @@ import { setupDevPlatform } from '@cloudflare/next-on-pages/next-dev'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      { source: '/shop', destination: '/', permanent: false },
+      { source: '/shop/:path*', destination: '/', permanent: false },
+      { source: '/farms', destination: '/', permanent: false },
+      { source: '/farms/:path*', destination: '/', permanent: false },
+    ]
+  },
   images: {
     remotePatterns: [
       {

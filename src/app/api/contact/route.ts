@@ -3,12 +3,11 @@ export const runtime = 'edge'
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
-const InquirySchema = z.object({
-  companyName: z.string().min(1).max(200),
-  contactName: z.string().min(1).max(200),
+const ContactSchema = z.object({
+  name: z.string().min(1).max(200),
   email: z.string().email(),
-  monthlyVolume: z.string().min(1).max(100),
-  message: z.string().max(2000).optional(),
+  subject: z.string().min(1).max(300),
+  message: z.string().min(1).max(3000),
 })
 
 export async function POST(req: NextRequest) {
@@ -25,17 +24,16 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    const parsed = InquirySchema.safeParse(data)
+    const parsed = ContactSchema.safeParse(data)
     if (!parsed.success) {
       return NextResponse.json(
-        { error: 'Invalid inquiry data', issues: parsed.error.issues },
+        { error: 'Invalid form data', issues: parsed.error.issues },
         { status: 400 },
       )
     }
 
-    const inquiry = parsed.data
+    const { name, email, subject, message } = parsed.data
 
-    // Send email notification (Resend / any email provider)
     const resendApiKey = process.env.RESEND_API_KEY
     const contactEmail = process.env.CONTACT_EMAIL || 'k1marasini@gmail.com'
 
@@ -49,34 +47,33 @@ export async function POST(req: NextRequest) {
         body: JSON.stringify({
           from: 'HimalayanTrader <noreply@himalayantrader.com>',
           to: contactEmail,
-          subject: `Wholesale inquiry from ${inquiry.companyName}`,
+          reply_to: email,
+          subject: `Contact: ${subject}`,
           html: `
-            <h2>New Wholesale Inquiry</h2>
+            <h2>New Contact Message</h2>
             <table>
-              <tr><td><strong>Company:</strong></td><td>${inquiry.companyName}</td></tr>
-              <tr><td><strong>Contact:</strong></td><td>${inquiry.contactName}</td></tr>
-              <tr><td><strong>Email:</strong></td><td>${inquiry.email}</td></tr>
-              <tr><td><strong>Monthly Volume:</strong></td><td>${inquiry.monthlyVolume}</td></tr>
-              <tr><td><strong>Message:</strong></td><td>${inquiry.message ?? '—'}</td></tr>
+              <tr><td><strong>Name:</strong></td><td>${name}</td></tr>
+              <tr><td><strong>Email:</strong></td><td>${email}</td></tr>
+              <tr><td><strong>Subject:</strong></td><td>${subject}</td></tr>
+              <tr><td><strong>Message:</strong></td><td>${message}</td></tr>
             </table>
           `,
         }),
       })
     } else {
-      console.log('[wholesale-inquiry] no RESEND_API_KEY set, logging inquiry:', inquiry)
+      console.log('[contact] no RESEND_API_KEY set, logging message:', { name, email, subject, message })
     }
 
-    // If request came from a form (not JSON), redirect back
     if (!contentType.includes('application/json')) {
       return NextResponse.redirect(
-        new URL('/wholesale?inquiry=sent', req.url),
+        new URL('/contact?sent=true', req.url),
         303,
       )
     }
 
     return NextResponse.json({ success: true })
   } catch (err) {
-    console.error('[wholesale-inquiry]', err)
+    console.error('[contact]', err)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }

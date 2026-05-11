@@ -2,20 +2,6 @@ import Link from 'next/link'
 import { Mountain, Mail, Instagram, Linkedin } from 'lucide-react'
 
 const footerLinks = {
-  Shop: [
-    { label: 'All Green Beans', href: '/shop' },
-    { label: 'Washed Process', href: '/shop?process=washed' },
-    { label: 'Natural Process', href: '/shop?process=natural' },
-    { label: 'Honey Process', href: '/shop?process=honey' },
-    { label: 'Featured Lots', href: '/shop?featured=true' },
-  ],
-  Origin: [
-    { label: 'Our Farms', href: '/farms' },
-    { label: 'Solukhumbu', href: '/farms?region=solukhumbu' },
-    { label: 'Gulmi', href: '/farms?region=gulmi' },
-    { label: 'Ilam', href: '/farms?region=ilam' },
-    { label: 'Traceability Promise', href: '/about#traceability' },
-  ],
   Business: [
     { label: 'Wholesale', href: '/wholesale' },
     { label: 'Sample Requests', href: '/wholesale#samples' },
@@ -104,7 +90,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-forest-700 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-cream-500">
-            © {new Date().getFullYear()} HimalayanTrader. All rights reserved.
+            © {new Date().getFullYear()} Himalayan Origin Imports LLC. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <span className="text-xs text-cream-500">

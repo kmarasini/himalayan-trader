@@ -1,14 +1,12 @@
 export const runtime = 'edge'
 
 import React from 'react'
-import Link from 'next/link'
 import { CheckCircle, Package, FileText, Globe, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { coffeeLots } from '@/lib/products'
-import { formatPriceFromDollars } from '@/lib/utils'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -120,16 +118,13 @@ export default function WholesalePage() {
             <h2 className="font-serif text-3xl font-bold text-charcoal-900">
               Available Lots
             </h2>
-            <Button variant="outline" asChild size="sm">
-              <Link href="/shop">Full product page →</Link>
-            </Button>
           </div>
           <div className="bg-white rounded-2xl border border-cream-200 overflow-hidden shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead className="bg-cream-100 border-b border-cream-200">
                   <tr>
-                    {['Lot', 'Region', 'Process', 'Q-Score', 'Available', 'Wholesale / kg', ''].map((h) => (
+                    {['Lot', 'Region', 'Process', 'Q-Score', 'Available'].map((h) => (
                       <th key={h} className="text-left text-xs font-semibold uppercase tracking-wider text-charcoal-500 px-5 py-3">
                         {h}
                       </th>
@@ -153,17 +148,6 @@ export default function WholesalePage() {
                         {lot.gradeScore}
                       </td>
                       <td className="px-5 py-4 text-charcoal-600">{lot.lotSize} kg</td>
-                      <td className="px-5 py-4 font-semibold text-charcoal-900">
-                        {formatPriceFromDollars(lot.pricing.wholesale.pricePerKg)}
-                        <span className="text-xs font-normal text-charcoal-400 ml-1">
-                          (min {lot.pricing.wholesale.minimumKg} kg)
-                        </span>
-                      </td>
-                      <td className="px-5 py-4">
-                        <Button size="sm" variant="outline" asChild>
-                          <Link href={`/shop/${lot.slug}`}>Details</Link>
-                        </Button>
-                      </td>
                     </tr>
                   ))}
                 </tbody>
